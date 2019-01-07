@@ -73,6 +73,7 @@ ingress:
 
   # TLS if enabled load the tls.crt and tls.keys as a secrets and enable TLS on the ingress
   tls:
+    secretName:
     enabled: false 
     crt: |-
     key: |-
