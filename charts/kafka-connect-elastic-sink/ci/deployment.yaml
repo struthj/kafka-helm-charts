@@ -60,7 +60,7 @@ spec:
       containers:
       - name: elastic
         image: elasticsearch:2.4
-        args: ["--cluster.name", "landoop"]
+        args: ["--cluster.name", "elasticsearch"]
         ports:
           - name: tcp-port
             containerPort: 9300

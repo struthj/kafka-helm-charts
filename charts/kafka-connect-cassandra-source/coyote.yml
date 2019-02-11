@@ -1,6 +1,12 @@
 - name: coyote
   title: kafka-connect-cassandra-source
 
+- name: Build Cassandra
+  entries:
+    - name: Build an image
+      command: >-
+        docker build -t lenses/cassandra -f ci/cassandra/Dockerfile .
+
 - name: Run PODs
   entries:
     - name: Deploy Cassandra and Fast Data Dev
@@ -56,10 +62,11 @@
       command: >-
         bash -c '
           POD=`%POD_NAME%`
+          echo $POD
           kubectl exec -i $POD -c kafka -- kafka-avro-console-consumer --bootstrap-server localhost:9092 --topic cassandra-source --from-beginning'
       ignore_exit_code: true
       stdout_has: [ 'OP-DAX-P-20150201-95.7', 'OP-DAX-C-20150201-100', 'FU-KOSPI-C-20150201-100' ]
-      timeout: 30s
+      timeout: 20s
 
 - name: Cleanup K8
   entries:

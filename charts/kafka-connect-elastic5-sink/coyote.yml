@@ -44,7 +44,6 @@
       stdin: |
         {"id": 999, "random_field": "foo"}
         {"id": 888, "random_field": "bar"}
-      timeout: 25s
     - command: sleep 60
       nolog: true
     - name: Verify first entry 

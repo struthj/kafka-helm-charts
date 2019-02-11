@@ -1,6 +1,12 @@
 - name: coyote
   title: kafka-connect-cassandra-sink
 
+- name: Build Cassandra
+  entries:
+    - name: Build an image
+      command: >-
+        docker build -t lenses/cassandra -f ci/cassandra/Dockerfile .
+
 - name: Run PODs
   entries:
     - name: Deploy Cassandra and Fast Data Dev

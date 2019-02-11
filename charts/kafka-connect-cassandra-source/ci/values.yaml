@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: streamreactor/cassandra
-  tag: 1.0.0
+  tag: 1.2.1.7
   pullPolicy: IfNotPresent
 
 # Resource management
@@ -27,10 +27,6 @@ kafka:
   bootstrapServers: 
     - name: kafka
       port: 9092
-  image:
-    repository: landoop/fast-data-dev
-    tag: 2.0.0
-    pullPolicy: IfNotPresent
 
 schemaRegistries:
   enabled: true
@@ -39,6 +35,8 @@ schemaRegistries:
       protocol: http
       port: 8081
       jmxPort: 9582 
+
+secretsProvider: env
 
 # javaHeap options    
 javaHeap: 256M
@@ -70,24 +68,6 @@ topics: "cassandra-source"
 # kcql KCQL expression describing field selection and routes. type: STRING importance: HIGH
 kcql: "INSERT INTO cassandra-source SELECT * FROM orders PK created"
 
-# maxRetries The maximum number of times to try the write again. type: INT importance: MEDIUM
-maxRetries: 20
-
-# taskBufferSize The size of the queue as read writes to. type: INT importance: MEDIUM
-taskBufferSize: 10000
-
-# importPollInterval The polling interval between queries against tables for bulk mode. type: LONG importance: MEDIUM
-importPollInterval: 1000
-
-# errorPolicy
-errorPolicy: THROW
-
-# retryInterval The time in milliseconds between retries. type: INT importance: MEDIUM
-retryInterval: 60000
-
-# deleteEnabled allow deletion of records in cassandra
-deleteEnabled: false
-
 # keySpace Keyspace to write to
 keySpace: "test"
 
@@ -99,3 +79,12 @@ username: "cassandra"
 
 # password Password key for cassandra
 password: "cassandra"
+
+# taskBufferSize The size of the queue as read writes to. type: INT importance: MEDIUM
+taskBufferSize: 10000
+
+# importPollInterval The polling interval between queries against tables for bulk mode. type: LONG importance: MEDIUM
+importPollInterval: 1000
+
+# mappingCollectionToJson Mapping columns with type Map, List and Set like json
+mappingCollectionToJson: true

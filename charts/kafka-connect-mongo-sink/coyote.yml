@@ -64,7 +64,7 @@
   entries:   
     - name: Delete Deployments
       command: >
-        kubectl delete deployments test-kafka-connect-mongo
+        kubectl delete deployments --all
     - name: Delete Stateful Apps
       command: >
         kubectl delete statefulsets.apps --all

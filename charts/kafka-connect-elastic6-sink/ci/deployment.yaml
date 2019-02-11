@@ -74,7 +74,7 @@ spec:
             memory: 1Gi
         env:
           - name: cluster.name
-            value: "landoop"
+            value: "elasticsearch"
           - name: bootstrap.memory_lock
             value: "false"
           - name: ES_JAVA_OPTS

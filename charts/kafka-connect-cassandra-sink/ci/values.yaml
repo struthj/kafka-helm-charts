@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: streamreactor/cassandra
-  tag: 1.0.0
+  tag: 1.2.1.7
   pullPolicy: IfNotPresent
 
 # Resource management
@@ -39,6 +39,8 @@ schemaRegistries:
       protocol: http
       port: 8081
       jmxPort: 9582 
+
+secretsProvider: env
 
 # javaHeap options    
 javaHeap: 256M

@@ -50,13 +50,13 @@
     - name: Verify first entry 
       command: >
         bash -c '
-          POD=`kubectl get pods -l=app=test-kafka-connect-redis -o jsonpath='{.items[0].metadata.name}'`
+          POD=`%POD_NAME%`
           kubectl exec -i $POD -c redis -- redis-cli -a redis get "%UNIQUE_NAME2%"'
       stdout_has: [ '%UNIQUE_NAME1%', '%UNIQUE_NAME2%', '4830' ]
     - name: Verify second entry 
       command: >
         bash -c '
-          POD=`kubectl get pods -l=app=test-kafka-connect-redis -o jsonpath='{.items[0].metadata.name}'`
+          POD=`%POD_NAME%`
           kubectl exec -i $POD -c redis -- redis-cli -a redis get "%UNIQUE_NAME4%"'
       stdout_has: [ '%UNIQUE_NAME3%', '%UNIQUE_NAME4%', '3048' ]
 
@@ -64,10 +64,10 @@
   entries:   
     - name: Delete Deployments
       command: >
-        kubectl delete deployments test-kafka-connect-redis
+        kubectl delete deployments --all
     - name: Delete Stateful Apps
       command: >
         kubectl delete statefulsets.apps --all
     - name: Delete Service
       command: >
-        kubectl delete services kafka redis
+        kubectl delete services --all

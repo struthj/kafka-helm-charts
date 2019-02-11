@@ -3,7 +3,7 @@ replicaCount: 1
 
 image:
   repository: streamreactor/elastic5
-  tag: 1.2.1
+  tag: 1.2.1.7
   pullPolicy: IfNotPresent
 
 # Resource management
@@ -27,10 +27,6 @@ kafka:
   bootstrapServers: 
     - name: kafka
       port: 9092
-  image:
-    repository: landoop/fast-data-dev
-    tag: 2.0.0
-    pullPolicy: IfNotPresent
 
 schemaRegistries:
   enabled: true
@@ -39,6 +35,8 @@ schemaRegistries:
       protocol: http
       port: 8081
       jmxPort: 9582 
+
+secretsProvider: env
 
 # javaHeap options    
 javaHeap: 256M
@@ -78,7 +76,7 @@ kcql: "INSERT INTO sink-index SELECT id, random_field FROM elastic-sink"
 errorThrow: true
 
 # clusterName Name of the elastic search cluster, used in local mode for setting the connection type: STRING importance: HIGH
-elasticClusterName: landoop
+elasticClusterName: elasticsearch
 
 # uriPrefix URL connection string prefix type: STRING importance: LOW
 urlPrefix: elasticsearch
