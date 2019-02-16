@@ -68,6 +68,9 @@ topics: "cassandra-source"
 # kcql KCQL expression describing field selection and routes. type: STRING importance: HIGH
 kcql: "INSERT INTO cassandra-source SELECT * FROM orders PK created"
 
+# initialOffset The initial timestamp to start querying in Cassandra from (yyyy-MM-dd HH:mm:ss.SSS'Z'). Default 1900-01-01 00:00:00.0000000Z
+initialOffset: "2019-02-18 00:00:00.0000000Z"
+
 # keySpace Keyspace to write to
 keySpace: "test"
 
@@ -87,4 +90,4 @@ taskBufferSize: 10000
 importPollInterval: 1000
 
 # mappingCollectionToJson Mapping columns with type Map, List and Set like json
-mappingCollectionToJson: true
+mappingCollectionToJson: false
